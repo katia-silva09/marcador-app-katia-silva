@@ -4,27 +4,28 @@ import { StyleSheet, Text, View } from "react-native";
 import FAB from "./FAB";
 
 interface Props {
-  position?: "left" | "right";
   name: string;
-  points?: number;
+  points: number;
+  setPoints: (value: number) => void;
 }
-export default function Team({ name, points = 0 }: Props) {
-  const [count, setCount] = useState(points);
+
+export default function Team({ name, points, setPoints }: Props) {
   return (
     <View style={styles.container}>
       <Text style={styles.name}>{name}</Text>
-      <Text style={styles.score}>{count}</Text>
-      <StatusBar style="dark" />
+      <Text style={styles.score}>{points}</Text>
+
       <FAB
         label="+1"
-        onPress={() => setCount(count + 1)}
-        onLongPress={() => setCount(0)}
+        onPress={() => setPoints(points + 1)}
+        onLongPress={() => setPoints(0)}
         position="right"
       />
+
       <FAB
         label="-1"
-        onPress={() => setCount(count - 1 >= 0 ? count - 1 : 0)}
-        onLongPress={() => setCount(0)}
+        onPress={() => setPoints(points - 1 >= 0 ? points - 1 : 0)}
+        onLongPress={() => setPoints(0)}
         position="left"
       />
     </View>

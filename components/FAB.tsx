@@ -2,7 +2,7 @@ import { Text, Pressable, StyleSheet } from "react-native";
 
 interface Props {
   label: string;
-  position?: "left" | "right";
+  position?: "left" | "right" | "center";
   onPress: () => void;
   onLongPress: () => void;
 }
@@ -17,7 +17,11 @@ export default function FAB({
     <Pressable
       style={({ pressed }) => [
         styles.floatingButt,
-        position === "right" ? styles.positionRigth : styles.positionLeft,
+        position === "right"
+          ? styles.positionRigth
+          : position === "left"
+            ? styles.positionLeft
+            : styles.positionCenter,
         pressed ? { opacity: 0.7 } : { opacity: 1 },
       ]}
       onPress={onPress}
@@ -47,5 +51,10 @@ const styles = StyleSheet.create({
   positionLeft: {
     left: 20,
     bottom: 20,
+  },
+  positionCenter: {
+    bottom: 40,
+    left: "50%",
+    transform: [{ translateX: -50 }],
   },
 });
