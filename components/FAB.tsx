@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     bottom: 20,
   },
   positionCenter: {
-    bottom: 40,
+    bottom: 120,
     left: "50%",
     transform: [{ translateX: -50 }],
   },
